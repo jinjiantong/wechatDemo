@@ -87,6 +87,9 @@
         <activity android:name="ui.Friend" android:screenOrientation="portrait" android:launchMode="singleTask" >           
         </activity>
         
+        <activity android:name="ui.ChatingRoom" android:screenOrientation="portrait" android:launchMode="singleTask" >           
+        </activity>
+        
         <activity android:name="ui.FindFriend" android:screenOrientation="portrait" android:launchMode="singleTask" >           
         </activity>
         
