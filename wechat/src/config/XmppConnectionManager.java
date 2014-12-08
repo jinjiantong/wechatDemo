@@ -33,7 +33,7 @@ import org.jivesoftware.smackx.search.UserSearch;
  * 
  */
 public class XmppConnectionManager {
-	final String XmppHost = "192.168.11.96";
+	final String XmppHost = "192.168.11.83";
 	final int XmppPort = 5222;
 	public static String BASE_XMPP_SERVER_NAME = "@testchat";
 	
