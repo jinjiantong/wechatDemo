@@ -1,5 +1,5 @@
 /**
- * wechatdonaaalasdfweasd
+ * wecha
  */
 package im;
 
@@ -88,6 +88,7 @@ import android.widget.Toast;
  *
  */
 public class Chating extends AChating implements OnTouchListener, OnItemClickListener, VoiceBubbleListener, OnEditorActionListener{
+	
 	private boolean isFace = false;
 	private Button voiceOrTextButton;
 	private Button faceOrTextButton;
