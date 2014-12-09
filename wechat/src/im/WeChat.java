@@ -14,10 +14,12 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.XMPPError;
+import org.jivesoftware.smackx.packet.VCard;
 
 import tools.Logger;
 import ui.adapter.WeChatAdapter;
 import ui.view.SlideDrawerView;
+import utils.Constants;
 
 import com.donal.wechat.R;
 
@@ -152,7 +154,9 @@ public class WeChat extends AWechatActivity {
 					String password = appContext.getLoginPassword();
 					String userId = appContext.getLoginUid();
 					XMPPConnection connection = XmppConnectionManager.getInstance()
-							.getConnection();
+							.getConnection(); 
+					setMutlRommSettings(connection);
+					
 					connection.connect();
 					connection.login(userId, password, "android"); 
 					connection.sendPacket(new Presence(Presence.Type.available));
@@ -175,6 +179,36 @@ public class WeChat extends AWechatActivity {
 				handler.sendMessage(msg);
 			}
 		}).start();
+	}
+  
+	/**
+	 * 设置多人聊天用的服务器链接对象 和用户别名
+	 *
+	 * @author jinchunhao
+	 *
+	 */
+	protected void setMutlRommSettings(XMPPConnection connection) {
+		
+		Constants.conn =connection ;
+		//昵称
+		VCard vCard = new VCard();
+		
+		try {
+			vCard.load(Constants.conn);
+			if("".equals(vCard.getNickName()) || null == vCard.getNickName()){
+				
+				vCard.setNickName(appContext.getLoginUid());
+			}
+			Constants.vCard = vCard;
+		
+		} catch (XMPPException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 
 	@Override
