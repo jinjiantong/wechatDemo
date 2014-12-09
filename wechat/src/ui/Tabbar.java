@@ -31,13 +31,14 @@ public class Tabbar extends TabActivity implements OnCheckedChangeListener {
 	private Intent friendIntent;
 	private Intent findFriendIntent;
 	private Intent meIntent;
-	private Intent mutlRoomIntent;
-	
+	private Intent chatingroomIntent;
+
 	private final static String TAB_TAG_WECHAT = "tab_tag_wechat";
 	private final static String TAB_TAG_FRIEND = "tab_tag_friend";
 	private final static String TAB_TAG_ME = "tab_tag_me";
 	private final static String TAB_TAG_FIND = "tab_tag_findfriend";
-	private final static String TAB_TAG_MULTROOM = "tab_tag_mutlRoom";
+	private final static String TAB_TAG_ROOM = "tab_tag_chatingroom";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,29 +56,23 @@ public class Tabbar extends TabActivity implements OnCheckedChangeListener {
 		friendIntent = new Intent(this, Friend.class);
 		meIntent = new Intent(this, Me.class);
 		findFriendIntent = new Intent(this, FindFriend.class);
-		mutlRoomIntent=new Intent(this,MutlRoom.class) ;
+		chatingroomIntent = new Intent(this, ChatingRoom.class);
 	}
 
 	private void setupIntent() {
 		mTabHost = getTabHost();
 		TabHost localTabHost = mTabHost;
-		
 		localTabHost.addTab(buildTabSpec(TAB_TAG_WECHAT, R.string.main_wechat,
 				R.drawable.tabbar_button1, wechatIntent));
-		
 		localTabHost.addTab(buildTabSpec(TAB_TAG_FRIEND, R.string.main_friend,
 				R.drawable.tabbar_button2, friendIntent));
-		
 		localTabHost.addTab(buildTabSpec(TAB_TAG_FIND,
 				R.string.main_find_friend, R.drawable.tabbar_button3,
 				findFriendIntent));
-		
-		localTabHost.addTab(buildTabSpec(TAB_TAG_MULTROOM, R.string.main_mutl_room,
-				R.drawable.tabbar_button4, mutlRoomIntent));
-		
-		
 		localTabHost.addTab(buildTabSpec(TAB_TAG_ME, R.string.main_me,
 				R.drawable.tabbar_button4, meIntent));
+		localTabHost.addTab(buildTabSpec(TAB_TAG_ROOM, R.string.main_room,
+				R.drawable.tabbar_button5, meIntent));
 	}
 
 	private TabHost.TabSpec buildTabSpec(String tag, int resLabel, int resIcon,
@@ -102,10 +97,9 @@ public class Tabbar extends TabActivity implements OnCheckedChangeListener {
 			this.mTabHost.setCurrentTabByTag(TAB_TAG_FIND);
 			break;
 		case R.id.radio_button4:
-			this.mTabHost.setCurrentTabByTag(TAB_TAG_MULTROOM);
-			break;
-		case R.id.radio_button5:
 			this.mTabHost.setCurrentTabByTag(TAB_TAG_ME);
+		case R.id.radio_button5:
+			this.mTabHost.setCurrentTabByTag(TAB_TAG_ROOM);
 			break;
 		}
 	}
